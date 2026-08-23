@@ -1,0 +1,21 @@
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tasks__footer {
+  padding-inline: var(--page-gutter);
+}
+
+/* One task at a time in the narrow dashboard track; the header carries the
+   "show all" control from 768px up. */
+@media (min-width: 768px) {
+  .carousel__track.tasks__rail > * {
+    flex: 0 0 100%;
+  }
+
+  .tasks__footer {
+    display: none;
+  }
+}

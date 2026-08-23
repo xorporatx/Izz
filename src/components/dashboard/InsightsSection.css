@@ -1,0 +1,14 @@
+.insights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Mobile keeps the rail defaults from Carousel.css — 342px cards with a peek.
+   From 768px each insight fills the column, which gives the card the width it
+   needs to lay its three findings out side by side. */
+@media (min-width: 768px) {
+  .carousel__track.insights__rail > * {
+    flex: 0 0 100%;
+  }
+}

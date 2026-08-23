@@ -1,0 +1,34 @@
+.period-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.period-selector__item {
+  flex: none;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-foreground);
+  white-space: nowrap;
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .period-selector__item:hover {
+    background: rgb(38 38 38 / 0.05);
+  }
+}
+
+.period-selector__item--active,
+.period-selector__item--active:hover {
+  color: #ffffff;
+  background: var(--color-success);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}

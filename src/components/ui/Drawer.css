@@ -1,0 +1,134 @@
+.drawer__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgb(24 24 24 / 0.45);
+}
+
+.drawer__overlay[data-state="open"] {
+  animation: drawer-fade-in 220ms var(--ease);
+}
+
+.drawer__overlay[data-state="closed"] {
+  animation: drawer-fade-out 180ms var(--ease);
+}
+
+.drawer__content {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  block-size: auto;
+  background: var(--color-background);
+  outline: none;
+}
+
+/* vaul stamps the direction; the rules below mirror the registry component. */
+.drawer__content[data-vaul-drawer-direction="bottom"] {
+  inset-inline: 0;
+  inset-block-end: 0;
+  margin-block-start: 96px;
+  max-block-size: 88vh;
+  border-start-start-radius: var(--radius-card);
+  border-start-end-radius: var(--radius-card);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.drawer__content[data-vaul-drawer-direction="top"] {
+  inset-inline: 0;
+  inset-block-start: 0;
+  margin-block-end: 96px;
+  max-block-size: 88vh;
+  border-end-start-radius: var(--radius-card);
+  border-end-end-radius: var(--radius-card);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.drawer__content[data-vaul-drawer-direction="right"] {
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: min(420px, 88vw);
+  border-inline-start: 1px solid var(--color-border);
+}
+
+.drawer__content[data-vaul-drawer-direction="left"] {
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: min(420px, 88vw);
+  border-inline-end: 1px solid var(--color-border);
+}
+
+/* Grab handle: bottom sheets only, as in the registry component. */
+.drawer__handle {
+  display: none;
+  flex: none;
+  inline-size: 100px;
+  block-size: 5px;
+  margin: var(--space-4) auto 0;
+  background: #ddd8cb;
+  border-radius: var(--radius-full);
+}
+
+.drawer__content[data-vaul-drawer-direction="bottom"] .drawer__handle {
+  display: block;
+}
+
+.drawer__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5) var(--space-2);
+  text-align: center;
+}
+
+.drawer__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-block-start: auto;
+  padding: var(--space-4) var(--space-5)
+    calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+}
+
+.drawer__title {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+}
+
+.drawer__description {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+}
+
+@keyframes drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes drawer-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Centre the sheet on wide screens rather than letting it span the viewport. */
+@media (min-width: 768px) {
+  .drawer__content[data-vaul-drawer-direction="bottom"],
+  .drawer__content[data-vaul-drawer-direction="top"] {
+    inline-size: min(440px, 100%);
+    margin-inline: auto;
+  }
+
+  .drawer__header {
+    text-align: start;
+  }
+
+  .drawer__footer {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}

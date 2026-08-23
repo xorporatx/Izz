@@ -1,0 +1,94 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+  transition: background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.btn__icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  box-shadow: none;
+}
+
+/* ── Primary ─────────────────────────────────────────────── */
+.btn--primary {
+  background: var(--color-success-strong);
+  color: var(--color-card);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xs);
+}
+
+@media (hover: hover) {
+  .btn--primary:not(:disabled):hover {
+    background: #05412f;
+  }
+}
+
+.btn--primary:not(:disabled):active {
+  background: #033526;
+  box-shadow: none;
+}
+
+/* ── Secondary ───────────────────────────────────────────── */
+.btn--secondary {
+  background: var(--color-surface-sunken);
+  color: var(--color-foreground);
+  font-weight: var(--weight-medium);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
+}
+
+@media (hover: hover) {
+  .btn--secondary:not(:disabled):hover {
+    background: #f3efe4;
+    border-color: #d7d3c9;
+  }
+}
+
+.btn--secondary:not(:disabled):active {
+  background: #ece7d9;
+  box-shadow: none;
+}
+
+/* ── Ghost ───────────────────────────────────────────────── */
+.btn--ghost {
+  min-height: 36px;
+  padding: var(--space-2);
+  color: var(--color-foreground);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+@media (hover: hover) {
+  .btn--ghost:not(:disabled):hover {
+    background: rgb(38 38 38 / 0.05);
+  }
+}
+
+.btn--ghost:not(:disabled):active {
+  background: rgb(38 38 38 / 0.09);
+}

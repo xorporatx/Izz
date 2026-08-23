@@ -1,0 +1,18 @@
+.tone-dot {
+  flex: none;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: var(--radius-full);
+}
+
+.tone-dot--warning {
+  background: var(--color-warning);
+}
+
+.tone-dot--danger {
+  background: var(--color-danger);
+}
+
+.tone-dot--success {
+  background: var(--color-success);
+}

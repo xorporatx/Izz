@@ -1,0 +1,45 @@
+.shell {
+  min-block-size: 100%;
+  background: var(--color-background);
+}
+
+.shell__main {
+  min-inline-size: 0;
+}
+
+.shell__content {
+  inline-size: 100%;
+  /* Clears the floating bottom bar. */
+  padding-block-end: calc(var(--mobile-nav-height) + var(--space-6));
+}
+
+@media (min-width: 768px) {
+  /* The sidebar is fixed, so the main column is inset by its width.
+     `margin-inline-start` resolves to the right in RTL, matching the sidebar. */
+  .shell__main {
+    margin-inline-start: var(--sidebar-rail-width);
+  }
+
+  .shell__content {
+    max-inline-size: var(--content-max);
+    margin-inline: auto;
+    padding: var(--space-6) var(--space-6) var(--space-12);
+  }
+}
+
+@media (min-width: 1200px) {
+  .shell__main {
+    margin-inline-start: var(--sidebar-width);
+  }
+
+  .shell__content {
+    padding: var(--space-8) var(--space-8) var(--space-12);
+  }
+}
+
+@media (min-width: 1440px) {
+  .shell__content {
+    max-inline-size: var(--content-max-wide);
+    padding-inline: var(--space-12);
+  }
+}

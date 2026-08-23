@@ -1,0 +1,93 @@
+.goal-card {
+  gap: var(--space-2);
+  block-size: 100%;
+}
+
+.goal-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  inline-size: 100%;
+}
+
+.goal-card__meta {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-inline-size: 0;
+}
+
+.goal-card__label {
+  /* Fills the space between the dot and the figure, right-aligned so the
+     text sits against the dot — as drawn in Figma. */
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  text-align: start;
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-muted-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.goal-card__value {
+  flex: none;
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-foreground);
+}
+
+.goal-card__context {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  inline-size: 100%;
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-tight);
+}
+
+.goal-card__baseline {
+  color: var(--color-muted-foreground);
+}
+
+.goal-card__deadline--warning {
+  color: var(--color-warning);
+}
+
+.goal-card__deadline--danger {
+  color: var(--color-danger);
+}
+
+.goal-card__deadline--success {
+  color: var(--color-success);
+}
+
+.goal-card__meter {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  inline-size: 100%;
+  margin-block-start: var(--space-1);
+}
+
+.goal-card__meter .progress {
+  flex: 1 1 auto;
+}
+
+.goal-card__percent {
+  flex: none;
+  font-size: var(--text-xs);
+  line-height: 1;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-success-soft);
+}

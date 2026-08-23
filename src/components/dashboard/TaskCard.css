@@ -1,0 +1,48 @@
+.task-card {
+  gap: var(--space-3);
+  block-size: 100%;
+  transition: opacity var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.task-card__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  inline-size: 100%;
+  margin-block-end: var(--space-1);
+}
+
+.task-card__status {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-muted-foreground);
+}
+
+.task-card__title {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+  text-wrap: pretty;
+}
+
+.task-card__description {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+  text-wrap: pretty;
+}
+
+.task-card--done {
+  opacity: 0.55;
+}
+
+.task-card--done .task-card__title {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-muted-foreground);
+}

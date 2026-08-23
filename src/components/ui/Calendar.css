@@ -1,0 +1,237 @@
+.calendar {
+  --cell-size: 40px;
+  padding: var(--space-2);
+  background: transparent;
+}
+
+.calendar__root {
+  inline-size: fit-content;
+  margin-inline: auto;
+}
+
+.calendar__months {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.calendar__month {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  inline-size: 100%;
+}
+
+/* ── Navigation ──────────────────────────────────────────── */
+.calendar__nav {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+}
+
+.calendar__nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--cell-size);
+  block-size: var(--cell-size);
+  color: var(--color-foreground);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .calendar__nav-button:hover {
+    background: rgb(38 38 38 / 0.06);
+  }
+}
+
+.calendar__nav-button[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* RTL: the glyphs point the other way round, matching the registry
+   component's `rtl:rotate-180` on both nav buttons. */
+[dir="rtl"] .calendar__nav-button .calendar__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Caption ─────────────────────────────────────────────── */
+.calendar__caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: var(--cell-size);
+  padding-inline: var(--cell-size);
+}
+
+.calendar__caption-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+  user-select: none;
+}
+
+.calendar__dropdowns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  block-size: var(--cell-size);
+}
+
+/* Dropdown caption: a transparent native <select> sits over a styled label,
+   so the control keeps native keyboard and mobile behaviour. */
+.calendar__dropdown-root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .calendar__dropdown-root:hover {
+    border-color: #d7d3c9;
+  }
+}
+
+.calendar__dropdown-root:has(.calendar__dropdown:focus-visible) {
+  border-color: var(--color-success-strong);
+  box-shadow: var(--focus-ring);
+}
+
+.calendar__dropdown-root .calendar__caption-label {
+  block-size: 32px;
+  padding-inline: var(--space-2) 6px;
+  font-weight: var(--weight-medium);
+}
+
+.calendar__dropdown-root .calendar__chevron {
+  inline-size: 14px;
+  block-size: 14px;
+  color: var(--color-muted-foreground);
+}
+
+.calendar__dropdown {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ── Grid ────────────────────────────────────────────────── */
+.calendar__grid {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+.calendar__weekdays,
+.calendar__week {
+  display: flex;
+}
+
+.calendar__week {
+  margin-block-start: var(--space-1);
+}
+
+.calendar__weekday {
+  flex: 1;
+  inline-size: var(--cell-size);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-muted-foreground);
+  text-align: center;
+  user-select: none;
+}
+
+.calendar__day {
+  inline-size: var(--cell-size);
+  block-size: var(--cell-size);
+  padding: 0;
+  text-align: center;
+}
+
+.calendar__day-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: 100%;
+  font-size: var(--text-sm);
+  line-height: 1;
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-foreground);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .calendar__day-button:hover {
+    background: var(--color-surface-sunken);
+  }
+}
+
+.calendar__day-button[data-today="true"] {
+  border-color: var(--color-success);
+  color: var(--color-success-ink);
+}
+
+.calendar__day-button[data-selected="true"],
+.calendar__day-button[data-selected="true"]:hover {
+  color: #ffffff;
+  background: var(--color-success-strong);
+  border-color: var(--color-success-strong);
+}
+
+.calendar__day-button:focus-visible {
+  outline: 2px solid var(--color-success-strong);
+  outline-offset: 2px;
+}
+
+.calendar__day--outside .calendar__day-button {
+  color: var(--color-muted-foreground);
+  opacity: 0.6;
+}
+
+.calendar__day--disabled .calendar__day-button {
+  color: var(--color-muted-foreground);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.calendar__day--hidden {
+  visibility: hidden;
+}
+
+@media (min-width: 768px) {
+  .calendar {
+    --cell-size: 44px;
+  }
+}

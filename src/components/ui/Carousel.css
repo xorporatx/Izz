@@ -1,0 +1,137 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Rail ────────────────────────────────────────────────── */
+.carousel__track {
+  display: flex;
+  gap: 34px;
+  /* One page gutter either side reproduces the card "peek" in Figma. */
+  padding-inline: var(--page-gutter);
+  padding-block: 4px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--page-gutter);
+}
+
+.carousel__track > * {
+  /* 342px is the Figma card width; never wider than the viewport allows. */
+  flex: 0 0 min(342px, calc(100vw - (var(--page-gutter) * 2)));
+  scroll-snap-align: center;
+}
+
+.carousel__track:focus-visible {
+  outline: 2px solid var(--color-success-strong);
+  outline-offset: -2px;
+  border-radius: var(--radius-card);
+}
+
+/* ── Controls ────────────────────────────────────────────── */
+.carousel__controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 30px;
+}
+
+.carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.carousel__dot {
+  inline-size: 7px;
+  block-size: 7px;
+  padding: 0;
+  background: #ddd8cb;
+  border-radius: var(--radius-full);
+  transition: inline-size var(--duration) var(--ease),
+    background-color var(--duration) var(--ease);
+}
+
+.carousel__dot--active {
+  inline-size: 37px;
+  background: var(--color-success-strong);
+}
+
+@media (hover: hover) {
+  .carousel__dot:not(.carousel__dot--active):hover {
+    background: #c6c0af;
+  }
+}
+
+/* Arrows sit at the inline end — the left, in RTL — leaving the dots
+   centred as drawn. Pointer devices only; touch just swipes. */
+.carousel__arrows {
+  position: absolute;
+  inset-inline-end: 0;
+  display: none;
+  gap: var(--space-1);
+}
+
+.carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 30px;
+  block-size: 30px;
+  color: var(--color-foreground);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xs);
+  transition: background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease), opacity var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .carousel__arrow:not(:disabled):hover {
+    background: var(--color-surface-sunken);
+    border-color: #d7d3c9;
+  }
+}
+
+.carousel__arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Tablet and up ───────────────────────────────────────── */
+@media (min-width: 768px) {
+  /* `responsive` stops being a rail; the section takes over the track. */
+  .carousel--responsive .carousel__track {
+    gap: var(--space-4);
+    padding-inline: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .carousel--responsive .carousel__track > * {
+    flex: initial;
+  }
+
+  .carousel--responsive .carousel__controls {
+    display: none;
+  }
+
+  /* `rail` stays a slider and gains arrow controls. */
+  .carousel--rail .carousel__track {
+    gap: var(--space-5);
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .carousel--rail .carousel__track > * {
+    scroll-snap-align: start;
+  }
+
+  .carousel--rail .carousel__arrows {
+    display: flex;
+  }
+}

@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  /* Grid and flex parents size the card; carousel items override this with
+     flex-basis, which wins over inline-size. */
+  inline-size: 100%;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+}
+
+.card--interactive {
+  text-align: inherit;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .card--interactive:hover {
+    border-color: #d7d3c9;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.card--interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.card--interactive:focus-visible {
+  outline: 2px solid var(--color-success-strong);
+  outline-offset: 2px;
+}

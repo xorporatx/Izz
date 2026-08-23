@@ -1,0 +1,108 @@
+/**
+ * IzzBizz design tokens.
+ *
+ * Values are lifted verbatim from the Figma library
+ * (file XtaqqfAFz5rwsNeD1kzcgz — "IzzBizz", frame 648:7862 "Home").
+ * The Figma variable name each token maps to is noted in the comment.
+ *
+ * Breakpoints are documented here but live in `src/styles/breakpoints.md`
+ * semantics because custom properties cannot be used inside media queries:
+ *   mobile   <  768px
+ *   tablet   >= 768px
+ *   desktop  >= 1200px
+ *   wide     >= 1440px
+ */
+
+:root {
+  /* ── Colour ─────────────────────────────────────────────── */
+  --color-background: #faf8f2; /* page / app chrome (Figma page fill)      */
+  --color-card: #ffffff; /* base/card                                */
+  --color-surface-sunken: #faf8f2; /* secondary button fill                    */
+  --color-border: #e5e5e5; /* base/border                              */
+  --color-foreground: #262626; /* base/foreground · base/card-foreground   */
+  --color-muted-foreground: #737373; /* base/muted-foreground                    */
+  --color-ring: #a3a3a3; /* base/ring                                */
+  --color-track: #f4f2ea; /* progress track                           */
+
+  --color-warning: #f69700; /* amber indicator                          */
+  --color-warning-surface: #fef1df; /* amber badge fill                         */
+  --color-danger: #dc2626; /* tailwind colors/red/600                  */
+  --color-danger-surface: #fdeaea;
+  --color-success: #059669; /* tailwind colors/emerald/600              */
+  --color-success-ink: #065f46; /* tailwind colors/emerald/800              */
+  --color-success-strong: #064e3b; /* tailwind colors/emerald/900 (primary CTA)*/
+  --color-success-surface: #e6edeb; /* emerald badge fill                       */
+  --color-success-soft: #56be8c; /* progress percentage label                */
+  --color-panel: #f8f7f4; /* sunken panel inside expanded cards       */
+
+  /* Chart fills — lighter than the indicator dots so bars stay quiet. */
+  --color-chart-warning: #fbb663;
+  --color-chart-danger: #ef8f8f;
+  --color-chart-success: #6fc9a0;
+
+  /* ── Radius ─────────────────────────────────────────────── */
+  --radius-md: 8px; /* border-radius/rounded-md                 */
+  --radius-xl: 14px; /* border-radius/rounded-xl                 */
+  --radius-card: 26px; /* card corner used across the dashboard    */
+  --radius-full: 9999px; /* border-radius/rounded-full               */
+
+  /* ── Spacing ────────────────────────────────────────────── */
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ── Typography ─────────────────────────────────────────── */
+  /* Google Sans is the Figma family; Rubik/Heebo are the closest
+     freely-available Hebrew-capable fallbacks and ship via Google Fonts. */
+  --font-sans: "Google Sans", "Google Sans Text", "Rubik", "Heebo",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --text-xs: 12px; /* text/xs/font-size                        */
+  --leading-xs: 16px; /* text/xs/line-height                      */
+  --text-sm: 14px; /* text/sm/font-size                        */
+  --leading-sm: 20px; /* text/sm/line-height                      */
+  --text-xl: 20px; /* text/xl/font-size                        */
+  --leading-xl: 28px; /* text/xl/line-height                      */
+
+  --tracking-tight: -0.24px;
+  --tracking-tighter: -0.4px;
+
+  --weight-regular: 400;
+  --weight-medium: 500; /* font-weight/medium                       */
+  --weight-semibold: 600; /* font-weight/semibold                     */
+  --weight-bold: 700;
+
+  /* ── Elevation ──────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow/xs */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); /* shadow/sm */
+  --shadow-hover: 0 6px 16px -6px rgb(38 38 38 / 0.12),
+    0 2px 6px -2px rgb(38 38 38 / 0.06);
+  --shadow-nav: 0 -6px 24px -8px rgb(38 38 38 / 0.12);
+  --focus-ring: 0 0 0 3px rgb(236 236 236 / 0.5); /* focus/default */
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --duration: 160ms;
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  --sidebar-width: 264px;
+  --sidebar-rail-width: 84px;
+  --content-max: 1400px;
+  --content-max-wide: 1500px;
+  --gutter: 16px; /* app chrome inset (Figma page header)      */
+  --page-gutter: 20px; /* mobile content inset                     */
+  --mobile-nav-height: 118px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 1ms;
+  }
+}

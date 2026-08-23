@@ -1,0 +1,128 @@
+.dash-header {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .dash-header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 20;
+    display: block;
+    background: var(--color-background);
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  .dash-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4) var(--space-6);
+    inline-size: 100%;
+    max-inline-size: var(--content-max);
+    margin-inline: auto;
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .dash-header__lead {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    min-inline-size: 0;
+  }
+
+  .dash-header__greeting {
+    font-size: var(--text-xs);
+    line-height: var(--leading-xs);
+    font-weight: var(--weight-bold);
+    color: var(--color-success);
+  }
+
+  .dash-header__title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-xl);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-foreground);
+    white-space: nowrap;
+  }
+
+  .dash-header__controls {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-3);
+    min-inline-size: 0;
+  }
+
+  /* When the row runs out of space the period pills scroll rather than
+     pushing the notification button onto a second line. */
+  .dash-header__controls .period-selector {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    mask-image: linear-gradient(
+      to left,
+      #000 0,
+      #000 calc(100% - 24px),
+      transparent 100%
+    );
+  }
+
+  .dash-header__bell {
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: 36px;
+    block-size: 36px;
+    color: var(--color-foreground);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-xs);
+    transition: background-color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease);
+  }
+
+  @media (hover: hover) {
+    .dash-header__bell:hover {
+      background: var(--color-surface-sunken);
+      border-color: #d7d3c9;
+    }
+  }
+
+  .dash-header__dot {
+    position: absolute;
+    inset-block-start: 7px;
+    inset-inline-start: 8px;
+    inline-size: 5px;
+    block-size: 5px;
+    background: var(--color-danger);
+    border-radius: var(--radius-full);
+  }
+}
+
+@media (min-width: 1200px) {
+  .dash-header__inner {
+    flex-wrap: nowrap;
+    padding: var(--space-5) var(--space-8);
+  }
+
+  /* One row: greeting on the right, controls filling the rest. The pill row
+     keeps `flex: 1 1 auto` at every size so its spare space sits next to the
+     notification button, where the fade mask is invisible. */
+  .dash-header__controls {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1440px) {
+  .dash-header__inner {
+    max-inline-size: var(--content-max-wide);
+    padding-inline: var(--space-12);
+  }
+}

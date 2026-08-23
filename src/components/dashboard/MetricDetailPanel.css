@@ -1,0 +1,245 @@
+.metric-panel {
+  gap: var(--space-2);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.metric-panel__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  inline-size: 100%;
+}
+
+.metric-panel__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metric-panel__label {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-muted-foreground);
+}
+
+.metric-panel__value {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-foreground);
+  animation: metric-panel-swap 220ms var(--ease);
+}
+
+.metric-panel__secondary {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-muted-foreground);
+}
+
+.metric-panel__meter {
+  inline-size: 100%;
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+}
+
+/* ── Comparison ──────────────────────────────────────────── */
+.metric-panel__comparison {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+  inline-size: 100%;
+  padding-block-start: 14px;
+  font-size: var(--text-xs);
+  line-height: 1;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-muted-foreground);
+}
+
+.metric-panel__delta-value {
+  font-weight: var(--weight-semibold);
+}
+
+.metric-panel__delta--positive .metric-panel__delta-value {
+  color: var(--color-success);
+}
+
+.metric-panel__delta--negative .metric-panel__delta-value {
+  color: var(--color-danger);
+}
+
+.metric-panel__delta--neutral .metric-panel__delta-value {
+  color: var(--color-muted-foreground);
+}
+
+/* ── Body ────────────────────────────────────────────────── */
+.metric-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  inline-size: 100%;
+  padding-block-start: 14px;
+}
+
+.metric-panel__chart {
+  padding-block: var(--space-2) 0;
+}
+
+.metric-panel__advice {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: var(--space-5);
+  background: var(--color-panel);
+  border-radius: 16px;
+  animation: metric-panel-swap 220ms var(--ease);
+}
+
+.metric-panel__block {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.metric-panel__block-title {
+  /* Icon sits at the inline start — the right edge in RTL — with the label
+     to its left, matching the Figma geometry. */
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-foreground);
+}
+
+.metric-panel__copy {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+  text-wrap: pretty;
+}
+
+.metric-panel__copy strong {
+  font-weight: var(--weight-bold);
+}
+
+.metric-panel__rule {
+  inline-size: 100%;
+  block-size: 0;
+  margin: 0;
+  border: 0;
+  border-block-start: 1px solid var(--color-border);
+}
+
+.metric-panel__task {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.metric-panel__task .metric-panel__copy {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.metric-panel__task-lead {
+  font-weight: var(--weight-bold);
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+/* shadcn outline button, size sm. */
+.metric-panel__task-action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  block-size: 32px;
+  padding-inline: var(--space-3);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-foreground);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition: background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .metric-panel__task-action:hover {
+    background: var(--color-surface-sunken);
+    border-color: #d7d3c9;
+  }
+}
+
+/* Copy crossfades on a category change; the chart bars morph instead — see
+   BarChart.css. The panel itself never unmounts. */
+@keyframes metric-panel-swap {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-panel__value,
+  .metric-panel__advice {
+    animation: none;
+  }
+}
+
+/* ── Chart beside the advice ─────────────────────────────── */
+@media (min-width: 768px) {
+  .metric-panel__body {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 1.7fr);
+    align-items: stretch;
+    gap: var(--space-5);
+  }
+
+  .metric-panel__chart {
+    display: flex;
+    align-items: flex-end;
+    padding-block: 0 var(--space-4);
+  }
+
+  /* Categories carry different amounts of copy; a floor keeps the dashboard
+     from jumping as the user moves between them. */
+  .metric-panel {
+    min-block-size: 360px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .metric-panel {
+    min-block-size: 292px;
+    padding: var(--space-6) var(--space-6) var(--space-5);
+  }
+
+  .metric-panel__body {
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 1.9fr);
+  }
+
+  .metric-panel__advice {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-5);
+  }
+
+  .metric-panel__rule {
+    inline-size: 0;
+    block-size: 100%;
+    border-block-start: 0;
+    border-inline-start: 1px solid var(--color-border);
+  }
+}

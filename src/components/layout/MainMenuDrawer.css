@@ -14,7 +14,10 @@
      the sidebar lives on, which is what the Figma frame shows. */
   right: 0;
   left: auto;
-  inline-size: min(360px, 88vw);
+  /* Same width as the expanded sidebar, off the same token, so the panel
+     lines up with the rail it opens from. The 88vw cap only bites on a
+     viewport narrower than 300px. */
+  inline-size: min(var(--sidebar-width), 88vw);
   padding: 0;
   background: var(--color-background);
   /* The exposed edge faces the dimmed dashboard — physically the left one. */

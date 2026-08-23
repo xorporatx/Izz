@@ -122,7 +122,9 @@
 .menu__item {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
+  /* Icon size and gap track .sidebar__item, so a category reads the same in
+     the menu as it does in the rail. */
+  gap: var(--space-3);
   inline-size: 100%;
   min-block-size: 52px;
   padding-inline: var(--space-4);

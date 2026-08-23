@@ -72,7 +72,7 @@ export function MainMenuDrawer({
                   aria-current={id === active ? "page" : undefined}
                   onClick={() => select(id)}
                 >
-                  <Icon size={22} className="menu__icon" />
+                  <Icon size={20} className="menu__icon" />
                   <span className="menu__label">{label}</span>
                   {badge && <span className="menu__badge">{badge}</span>}
                 </button>

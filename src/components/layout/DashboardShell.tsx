@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import type { PeriodId } from "../../data/dashboard";
 import { DashboardHeader } from "./DashboardHeader";
 import { DesktopSidebar } from "./DesktopSidebar";
+import { MainMenuDrawer } from "./MainMenuDrawer";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileTopBar } from "./MobileTopBar";
 import "./DashboardShell.css";
@@ -36,9 +37,16 @@ export function DashboardShell({
   onNavSelect,
   children,
 }: DashboardShellProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="shell">
-      <DesktopSidebar venue={venue} active={activeNav} onSelect={onNavSelect} />
+      <DesktopSidebar
+        venue={venue}
+        active={activeNav}
+        onSelect={onNavSelect}
+        onOpenMenu={() => setMenuOpen(true)}
+      />
 
       <div className="shell__main">
         <MobileTopBar
@@ -47,6 +55,7 @@ export function DashboardShell({
           period={period}
           onPeriodChange={onPeriodChange}
           onDateChange={onDateChange}
+          onOpenMenu={() => setMenuOpen(true)}
         />
 
         <DashboardHeader
@@ -62,6 +71,14 @@ export function DashboardShell({
       </div>
 
       <MobileBottomNav active={activeNav} onSelect={onNavSelect} />
+
+      <MainMenuDrawer
+        open={menuOpen}
+        onOpenChange={setMenuOpen}
+        venue={venue}
+        active={activeNav}
+        onSelect={onNavSelect}
+      />
     </div>
   );
 }

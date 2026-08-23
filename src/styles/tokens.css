@@ -35,6 +35,11 @@
   --color-success-soft: #56be8c; /* progress percentage label                */
   --color-panel: #f8f7f4; /* sunken panel inside expanded cards       */
 
+  /* The menu's "החלף סניף" is the one blue in the product — it marks the
+     branch switch as a context change rather than another green action. */
+  --color-accent-blue: #5b7cf2;
+  --color-accent-blue-hover: #4a6be4;
+
   /* Chart fills — lighter than the indicator dots so bars stay quiet. */
   --color-chart-warning: #fbb663;
   --color-chart-danger: #ef8f8f;

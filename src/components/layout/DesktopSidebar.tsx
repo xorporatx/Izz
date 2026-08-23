@@ -1,11 +1,13 @@
 import { navItems } from "../../data/navigation";
-import { BarChart2, Plus } from "../icons";
+import { BarChart2, Menu, Plus } from "../icons";
 import "./DesktopSidebar.css";
 
 export interface DesktopSidebarProps {
   venue: string;
   active: string;
   onSelect: (id: string) => void;
+  /** Opens the full category menu. */
+  onOpenMenu: () => void;
 }
 
 /**
@@ -19,6 +21,7 @@ export function DesktopSidebar({
   venue,
   active,
   onSelect,
+  onOpenMenu,
 }: DesktopSidebarProps) {
   return (
     <aside className="sidebar" aria-label="ניווט ראשי">
@@ -31,6 +34,17 @@ export function DesktopSidebar({
           <span className="sidebar__venue">{venue}</span>
         </span>
       </div>
+
+      <button
+        type="button"
+        className="sidebar__item sidebar__burger"
+        title="תפריט"
+        aria-haspopup="dialog"
+        onClick={onOpenMenu}
+      >
+        <Menu size={20} className="sidebar__icon" />
+        <span className="sidebar__label">תפריט</span>
+      </button>
 
       <ul className="sidebar__nav">
         {navItems.map(({ id, label, Icon }) => (

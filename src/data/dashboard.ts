@@ -438,3 +438,9 @@ export const goals: Goal[] = [
     progress: 22,
   },
 ];
+
+/** Signed-in user, shown in the menu header and its account footer. */
+export const currentUser = {
+  name: "אור",
+  email: "Emanuel@gmail.com",
+};

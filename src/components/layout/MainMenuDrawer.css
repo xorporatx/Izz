@@ -1,0 +1,246 @@
+/**
+ * Burger menu panel.
+ *
+ * Widths follow the Figma frame: a near-full sheet on mobile, capped at
+ * 420px once there is room. The drawer's own positioning and animation come
+ * from Drawer.css — everything here is the contents.
+ */
+.drawer__content.menu {
+  /* Physical, not logical, and deliberately so. Drawer.css pins
+     direction="right" with `inset-inline-end`, which under dir=rtl resolves
+     to the *left* edge — while vaul still hides the panel behind the
+     physical right one. Left as logical, the drawer slides in from the right
+     and parks on the left. Pinning it physically puts it back on the edge
+     the sidebar lives on, which is what the Figma frame shows. */
+  right: 0;
+  left: auto;
+  inline-size: min(420px, 92vw);
+  padding: 0;
+  background: var(--color-background);
+  /* The exposed edge faces the dimmed dashboard — physically the left one. */
+  border-left: 1px solid var(--color-border);
+  border-top-left-radius: var(--radius-card);
+  border-bottom-left-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* ── Close ─────────────────────────────────────────────────── */
+.menu__top {
+  display: flex;
+  /* The X sits opposite the reading edge — left, in RTL. */
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-5) 0;
+}
+
+.menu__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 40px;
+  block-size: 40px;
+  color: var(--color-foreground);
+  border-radius: var(--radius-full);
+  transition: background-color var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .menu__close:hover {
+    background: rgb(38 38 38 / 0.06);
+  }
+}
+
+/* ── Identity ──────────────────────────────────────────────── */
+.menu__identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  text-align: start;
+}
+
+.menu__greeting {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-foreground);
+}
+
+.menu__venue {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-regular);
+  color: var(--color-muted-foreground);
+}
+
+/* ── Branch switch ─────────────────────────────────────────── */
+.menu__switch {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-inline: var(--space-6);
+  min-block-size: 56px;
+  padding-inline: var(--space-6);
+  color: #ffffff;
+  background: var(--color-accent-blue);
+  border-radius: var(--radius-full);
+  transition: background-color var(--duration) var(--ease);
+}
+
+.menu__switch-label {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-semibold);
+}
+
+.menu__switch-chevron {
+  flex: none;
+}
+
+@media (hover: hover) {
+  .menu__switch:hover {
+    background: var(--color-accent-blue-hover);
+  }
+}
+
+/* ── Categories ────────────────────────────────────────────── */
+.menu__nav {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: var(--space-6) var(--space-4) var(--space-4);
+  overflow-y: auto;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  inline-size: 100%;
+  min-block-size: 52px;
+  padding-inline: var(--space-4);
+  color: var(--color-foreground);
+  border-radius: var(--radius-xl);
+  transition: background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+/* Icon leads at the inline start — the right edge, in RTL. */
+.menu__icon {
+  flex: none;
+  color: var(--color-foreground);
+}
+
+.menu__label {
+  flex: 0 1 auto;
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-medium);
+  text-align: start;
+}
+
+.menu__badge {
+  flex: none;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-semibold);
+  color: #ffffff;
+  background: var(--color-foreground);
+  border-radius: var(--radius-full);
+}
+
+@media (hover: hover) {
+  .menu__item:hover {
+    background: var(--color-surface-sunken);
+  }
+}
+
+.menu__item--active,
+.menu__item--active:hover {
+  color: var(--color-success-ink);
+  background: var(--color-success-surface);
+}
+
+.menu__item--active .menu__icon {
+  color: var(--color-success-ink);
+}
+
+.menu__item--active .menu__label {
+  font-weight: var(--weight-semibold);
+}
+
+/* ── Account ───────────────────────────────────────────────── */
+.menu__account {
+  flex: none;
+  padding: var(--space-4) var(--space-4)
+    calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  border-block-start: 1px solid var(--color-border);
+}
+
+.menu__user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  inline-size: 100%;
+  min-block-size: 56px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-xl);
+  transition: background-color var(--duration) var(--ease);
+}
+
+.menu__avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 48px;
+  block-size: 48px;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: #ffffff;
+  background: var(--color-success-strong);
+  border-radius: var(--radius-full);
+}
+
+.menu__user-text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-inline-size: 0;
+  text-align: start;
+}
+
+.menu__user-action {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-medium);
+  color: var(--color-foreground);
+}
+
+.menu__user-email {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-muted-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu__user-chevron {
+  flex: none;
+  color: var(--color-muted-foreground);
+}
+
+@media (hover: hover) {
+  .menu__user:hover {
+    background: var(--color-surface-sunken);
+  }
+}

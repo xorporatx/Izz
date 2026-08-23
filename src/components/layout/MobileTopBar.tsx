@@ -10,6 +10,8 @@ export interface MobileTopBarProps {
   period: PeriodId;
   onPeriodChange: (period: PeriodId) => void;
   onDateChange: (date: Date) => void;
+  /** Opens the full category menu — the same drawer the sidebar opens. */
+  onOpenMenu: () => void;
 }
 
 /**
@@ -25,11 +27,18 @@ export function MobileTopBar({
   period,
   onPeriodChange,
   onDateChange,
+  onOpenMenu,
 }: MobileTopBarProps) {
   return (
     <div className="mobile-top-bar">
       <div className="mobile-top-bar__header">
-        <button type="button" className="mobile-top-bar__icon" aria-label="תפריט">
+        <button
+          type="button"
+          className="mobile-top-bar__icon"
+          aria-label="תפריט"
+          aria-haspopup="dialog"
+          onClick={onOpenMenu}
+        >
           <Menu size={20} />
         </button>
 

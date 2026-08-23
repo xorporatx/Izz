@@ -169,3 +169,75 @@ export const Check = (p: IconProps) => (
     <path d="M20 6 9 17l-5-5" />
   </Icon>
 );
+
+export const X = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
+  </Icon>
+);
+
+export const Settings = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+    <circle cx="12" cy="12" r="3" />
+  </Icon>
+);
+
+export const CircleUser = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="10" r="3" />
+    <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+  </Icon>
+);
+
+export const FileUp = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    <path d="M12 18v-6" />
+    <path d="m9 15 3-3 3 3" />
+  </Icon>
+);
+
+export const Receipt = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+    <path d="M8 7h8" />
+    <path d="M8 11h8" />
+    <path d="M8 15h5" />
+  </Icon>
+);
+
+export const UserCheck = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="m16 11 2 2 4-4" />
+  </Icon>
+);
+
+export const Platter = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="3.5" r="1" />
+    <path d="M12 4.5V6" />
+    <path d="M4 14a8 8 0 0 1 16 0" />
+    <path d="M2 14h20" />
+    <path d="M5.5 18h13" />
+  </Icon>
+);
+
+export const ChartLine = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="m3 16.5 5.5-7.5 4 4.5L21 6" />
+  </Icon>
+);
+
+export const BellDot = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M19.4 14.9C20.2 16.4 21 17 21 17H3s3-2 3-9c0-3.3 2.7-6 6-6 .7 0 1.3.1 1.9.3" />
+    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+    <circle cx="18" cy="8" r="3" />
+  </Icon>
+);

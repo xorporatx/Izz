@@ -62,6 +62,23 @@
     white-space: nowrap;
   }
 
+  /* ── Burger ────────────────────────────────────────────── */
+  /* Opens the superset of the list below, so it is separated from the four
+     primary destinations by a rule rather than sitting among them. */
+  .sidebar__burger {
+    flex: none;
+    padding-block-end: var(--space-4);
+    border-block-end: 1px solid var(--color-border);
+    border-radius: 0;
+  }
+
+  @media (hover: hover) {
+    .sidebar__burger:hover {
+      color: var(--color-foreground);
+      background: transparent;
+    }
+  }
+
   /* ── Items ─────────────────────────────────────────────── */
   .sidebar__nav {
     display: flex;

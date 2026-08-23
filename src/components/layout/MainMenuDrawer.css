@@ -14,7 +14,7 @@
      the sidebar lives on, which is what the Figma frame shows. */
   right: 0;
   left: auto;
-  inline-size: min(420px, 92vw);
+  inline-size: min(360px, 88vw);
   padding: 0;
   background: var(--color-background);
   /* The exposed edge faces the dimmed dashboard — physically the left one. */
@@ -29,15 +29,15 @@
   display: flex;
   /* The X sits opposite the reading edge — left, in RTL. */
   justify-content: flex-end;
-  padding: var(--space-4) var(--space-5) 0;
+  padding: var(--space-3) var(--space-4) 0;
 }
 
 .menu__close {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 40px;
-  block-size: 40px;
+  inline-size: 36px;
+  block-size: 36px;
   color: var(--color-foreground);
   border-radius: var(--radius-full);
   transition: background-color var(--duration) var(--ease);
@@ -53,22 +53,22 @@
 .menu__identity {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-5) var(--space-6) var(--space-6);
+  gap: var(--space-0-5);
+  padding: var(--space-3) var(--space-5) var(--space-5);
   text-align: start;
 }
 
 .menu__greeting {
-  font-size: var(--text-xl);
-  line-height: var(--leading-xl);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tighter);
   color: var(--color-foreground);
 }
 
 .menu__venue {
-  font-size: var(--text-xl);
-  line-height: var(--leading-xl);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   font-weight: var(--weight-regular);
   color: var(--color-muted-foreground);
 }
@@ -80,9 +80,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-inline: var(--space-6);
-  min-block-size: 56px;
-  padding-inline: var(--space-6);
+  margin-inline: var(--space-5);
+  min-block-size: 44px;
+  padding-inline: var(--space-4);
   color: #ffffff;
   background: var(--color-accent-blue);
   border-radius: var(--radius-full);
@@ -90,8 +90,8 @@
 }
 
 .menu__switch-label {
-  font-size: var(--text-xl);
-  line-height: var(--leading-xl);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   font-weight: var(--weight-semibold);
 }
 
@@ -109,7 +109,7 @@
 .menu__nav {
   flex: 1 1 auto;
   min-block-size: 0;
-  padding: var(--space-6) var(--space-4) var(--space-4);
+  padding: var(--space-4) var(--space-3) var(--space-3);
   overflow-y: auto;
 }
 
@@ -126,8 +126,8 @@
      the menu as it does in the rail. */
   gap: var(--space-3);
   inline-size: 100%;
-  min-block-size: 52px;
-  padding-inline: var(--space-4);
+  min-block-size: 44px;
+  padding-inline: var(--space-3);
   color: var(--color-foreground);
   border-radius: var(--radius-xl);
   transition: background-color var(--duration) var(--ease),
@@ -184,18 +184,18 @@
 /* ── Account ───────────────────────────────────────────────── */
 .menu__account {
   flex: none;
-  padding: var(--space-4) var(--space-4)
-    calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  padding: var(--space-3) var(--space-3)
+    calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
   border-block-start: 1px solid var(--color-border);
 }
 
 .menu__user {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
   inline-size: 100%;
-  min-block-size: 56px;
-  padding-inline: var(--space-3);
+  min-block-size: 48px;
+  padding-inline: var(--space-2);
   border-radius: var(--radius-xl);
   transition: background-color var(--duration) var(--ease);
 }
@@ -205,9 +205,9 @@
   flex: none;
   align-items: center;
   justify-content: center;
-  inline-size: 48px;
-  block-size: 48px;
-  font-size: var(--text-xl);
+  inline-size: 36px;
+  block-size: 36px;
+  font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   color: #ffffff;
   background: var(--color-success-strong);
@@ -223,15 +223,15 @@
 }
 
 .menu__user-action {
-  font-size: var(--text-xl);
-  line-height: var(--leading-xl);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
   font-weight: var(--weight-medium);
   color: var(--color-foreground);
 }
 
 .menu__user-email {
-  font-size: var(--text-sm);
-  line-height: var(--leading-sm);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
   color: var(--color-muted-foreground);
   overflow: hidden;
   text-overflow: ellipsis;

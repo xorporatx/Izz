@@ -44,7 +44,7 @@ export function MainMenuDrawer({
       <DrawerContent className="menu" aria-describedby={undefined}>
         <div className="menu__top">
           <DrawerClose className="menu__close" aria-label="סגירת התפריט">
-            <X size={22} />
+            <X size={20} />
           </DrawerClose>
         </div>
 
@@ -57,7 +57,7 @@ export function MainMenuDrawer({
 
         <button type="button" className="menu__switch">
           <span className="menu__switch-label">החלף סניף</span>
-          <ChevronLeft size={20} className="menu__switch-chevron" />
+          <ChevronLeft size={18} className="menu__switch-chevron" />
         </button>
 
         <nav className="menu__nav" aria-label="כל הקטגוריות">
@@ -90,7 +90,7 @@ export function MainMenuDrawer({
               <span className="menu__user-action">החלף משתמש</span>
               <span className="menu__user-email">{currentUser.email}</span>
             </span>
-            <ChevronLeft size={20} className="menu__user-chevron" />
+            <ChevronLeft size={18} className="menu__user-chevron" />
           </button>
         </footer>
       </DrawerContent>

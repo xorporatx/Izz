@@ -81,11 +81,13 @@ export function LaborCostPage({
                 </span>
               </span>
 
-              <span className="department-card__side">
-                <span className="department-card__count numeric">
-                  {headcount(department)}
+              <span className="department-card__footer">
+                <span className="department-card__count">
+                  <span className="department-card__count-value numeric">
+                    {headcount(department)}
+                  </span>
+                  <span className="department-card__count-label">עובדים</span>
                 </span>
-                <span className="department-card__count-label">עובדים</span>
                 <ArrowLeft size={18} className="department-card__chevron" />
               </span>
             </Card>

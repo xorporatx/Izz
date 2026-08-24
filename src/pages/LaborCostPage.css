@@ -4,12 +4,16 @@
   gap: var(--space-5);
 }
 
+/* Below 768px the shell supplies no horizontal padding — each page brings its
+   own gutter, as the פודקוסט screen does. From 768px up the shell pads. */
 .labor-cost__summary {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-4);
   flex-wrap: wrap;
+  padding-block-start: var(--space-4);
+  padding-inline: var(--page-gutter);
 }
 
 .labor-cost__intro {
@@ -38,18 +42,23 @@
 }
 
 .labor-cost__departments {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* One column on a phone, two once there is room, three on a full desktop —
+     the track minimum does the switching, so there is no breakpoint list to
+     keep in step with the sidebar's own widths. */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-3);
+  padding-inline: var(--page-gutter);
 }
 
 /* ── Department card ─────────────────────────────────────── */
-.department-card {
+/* Doubled up with .card: both are single-class selectors and Card.css loads
+   later, so an unqualified .department-card loses every property they share. */
+.card.department-card {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   gap: var(--space-4);
-  inline-size: 100%;
   padding: var(--space-4) var(--space-5);
   text-align: start;
 }
@@ -77,22 +86,37 @@
   line-height: var(--leading-sm);
   font-weight: var(--weight-semibold);
   color: var(--color-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .department-card__meta {
   font-size: var(--text-xs);
   line-height: var(--leading-xs);
   color: var(--color-muted-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.department-card__side {
+/* Headcount at the reading edge, the forward arrow opposite. */
+.department-card__footer {
   display: flex;
-  flex: none;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.department-card__count {
+  display: flex;
   align-items: baseline;
   gap: var(--space-2);
 }
 
-.department-card__count {
+.department-card__count-value {
   font-size: var(--text-xl);
   line-height: var(--leading-xl);
   font-weight: var(--weight-bold);
@@ -114,5 +138,15 @@
 @media (min-width: 768px) {
   .labor-cost {
     gap: var(--space-6);
+  }
+
+  .labor-cost__summary {
+    padding-block-start: 0;
+    padding-inline: 0;
+  }
+
+  .labor-cost__departments {
+    gap: var(--space-4);
+    padding-inline: 0;
   }
 }

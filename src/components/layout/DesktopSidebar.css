@@ -21,23 +21,13 @@
   }
 
   /* ── Brand ─────────────────────────────────────────────── */
+  /* The rail has no room for a wordmark and no longer carries a mark, so the
+     brand row simply does not exist below 1200px. */
   .sidebar__brand {
-    display: flex;
+    display: none;
     align-items: center;
     gap: var(--space-3);
     min-block-size: 40px;
-  }
-
-  .sidebar__mark {
-    display: inline-flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    inline-size: 36px;
-    block-size: 36px;
-    color: #ffffff;
-    background: var(--color-success-strong);
-    border-radius: 12px;
   }
 
   .sidebar__wordmark {
@@ -85,6 +75,10 @@
     flex: 1 1 auto;
     flex-direction: column;
     gap: var(--space-1);
+    /* The full category list can outgrow a short viewport; it scrolls inside
+       the rail so the ＋ action stays reachable. */
+    min-block-size: 0;
+    overflow-y: auto;
   }
 
   .sidebar__item {
@@ -112,6 +106,18 @@
     line-height: var(--leading-sm);
     font-weight: var(--weight-medium);
     text-align: start;
+  }
+
+  .sidebar__badge {
+    display: none;
+    flex: none;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    line-height: var(--leading-xs);
+    font-weight: var(--weight-semibold);
+    color: #ffffff;
+    background: var(--color-foreground);
+    border-radius: var(--radius-full);
   }
 
   @media (hover: hover) {
@@ -166,9 +172,14 @@
     gap: var(--space-8);
   }
 
+  .sidebar__brand,
   .sidebar__wordmark,
   .sidebar__label {
     display: flex;
+  }
+
+  .sidebar__badge {
+    display: inline-block;
   }
 
   .sidebar__item,

@@ -1,5 +1,5 @@
-import { navItems } from "../../data/navigation";
-import { BarChart2, Menu, Plus } from "../icons";
+import { menuItems } from "../../data/navigation";
+import { Menu, Plus } from "../icons";
 import "./DesktopSidebar.css";
 
 export interface DesktopSidebarProps {
@@ -16,6 +16,10 @@ export interface DesktopSidebarProps {
  * 264px from 1200px up; between 768px and 1199px it collapses to an 84px
  * icon rail. Below 768px it is not rendered at all — the mobile bottom bar
  * and header take over.
+ *
+ * It lists every category off `menuItems`, the same source as the burger
+ * menu, so the two never drift. The bottom bar keeps the four-item
+ * `navItems` — it has two slots either side of the ＋ and cannot grow.
  */
 export function DesktopSidebar({
   venue,
@@ -26,9 +30,6 @@ export function DesktopSidebar({
   return (
     <aside className="sidebar" aria-label="ניווט ראשי">
       <div className="sidebar__brand">
-        <span className="sidebar__mark" aria-hidden="true">
-          <BarChart2 size={18} />
-        </span>
         <span className="sidebar__wordmark">
           <span className="sidebar__name">IzzBizz</span>
           <span className="sidebar__venue">{venue}</span>
@@ -47,7 +48,7 @@ export function DesktopSidebar({
       </button>
 
       <ul className="sidebar__nav">
-        {navItems.map(({ id, label, Icon }) => (
+        {menuItems.map(({ id, label, Icon, badge }) => (
           <li key={id}>
             <button
               type="button"
@@ -60,6 +61,7 @@ export function DesktopSidebar({
             >
               <Icon size={20} className="sidebar__icon" />
               <span className="sidebar__label">{label}</span>
+              {badge && <span className="sidebar__badge">{badge}</span>}
             </button>
           </li>
         ))}

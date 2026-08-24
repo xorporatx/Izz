@@ -1,4 +1,4 @@
-import type { Supplier } from "../../data/suppliers";
+import { orderCountLabel, type Supplier } from "../../data/suppliers";
 import { ChevronDown } from "../icons";
 import { Progress } from "../ui/Progress";
 import { ToneDot } from "../ui/ToneDot";
@@ -25,7 +25,9 @@ export function SupplierCardBody({ supplier }: SupplierCardBodyProps) {
         </span>
 
         <span className="supplier-card__figures">
-          <span className="supplier-card__count">{`${supplier.orderCount} הזמנות`}</span>
+          <span className="supplier-card__count">
+            {orderCountLabel(supplier.orderCount)}
+          </span>
           <span className="supplier-card__amount">
             <span className="supplier-card__value numeric">{supplier.spend}</span>
             <span className="supplier-card__separator" aria-hidden="true">

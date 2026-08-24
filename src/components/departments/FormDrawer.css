@@ -1,0 +1,98 @@
+/**
+ * The creation forms' overlay.
+ *
+ * Wider than the navigation drawer — these hold two-column rows, where the
+ * menu holds a single list.
+ */
+.drawer__content.form-drawer {
+  /* Physical, for the reason given in MainMenuDrawer.css: Drawer.css pins
+     direction="right" with inset-inline-end, which under dir=rtl lands on the
+     left while vaul still hides the panel behind the physical right edge. */
+  right: 0;
+  left: auto;
+  inline-size: min(480px, 92vw);
+  padding: 0;
+  background: var(--color-background);
+  border-left: 1px solid var(--color-border);
+  border-top-left-radius: var(--radius-card);
+  border-bottom-left-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.form-drawer__form {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 0;
+}
+
+.form-drawer__header {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  text-align: start;
+}
+
+.form-drawer__title {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-foreground);
+}
+
+.form-drawer__description {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-muted-foreground);
+}
+
+/* The fields scroll; the actions below stay put. */
+.form-drawer__body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: 0 var(--space-6) var(--space-6);
+  overflow-y: auto;
+}
+
+/* Two-up rows, as the frame draws them. */
+.form-drawer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.form-drawer__footer {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6)
+    calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+  background: var(--color-background);
+  border-block-start: 1px solid var(--color-border);
+}
+
+/* The CTA's arrow trails the label inside .btn__label, so that span has to
+   lay out as a row — the same fix SupplierPage makes for its own CTA. */
+.form-drawer__footer .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.form-drawer__error {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-danger);
+  text-align: start;
+}
+
+/* A narrow phone cannot carry two columns of 44px controls. */
+@media (max-width: 480px) {
+  .form-drawer__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

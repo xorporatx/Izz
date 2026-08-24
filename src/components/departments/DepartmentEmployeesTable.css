@@ -1,0 +1,73 @@
+/**
+ * Employee table.
+ *
+ * The `.data-table` rules are written generically so a second table can adopt
+ * them; the supplier orders table keeps its own for now rather than being
+ * refactored as part of this flow.
+ */
+.employees-table-card {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-panel);
+}
+
+/* Five columns need more room than a phone has; it scrolls in its own card. */
+.employees-table-card__scroll {
+  inline-size: 100%;
+  overflow-x: auto;
+}
+
+.employees-table-card__empty {
+  padding: var(--space-8) var(--space-5);
+  text-align: center;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-muted-foreground);
+}
+
+.data-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
+.data-table__head {
+  block-size: 40px;
+  padding: var(--space-2) var(--space-3);
+  text-align: start;
+  font-weight: var(--weight-regular);
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.data-table__cell {
+  block-size: 52px;
+  padding: var(--space-2) var(--space-3);
+  text-align: start;
+  font-weight: var(--weight-regular);
+  color: var(--color-foreground);
+  white-space: nowrap;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.data-table__cell--name {
+  font-weight: var(--weight-medium);
+}
+
+.data-table__cell--muted {
+  color: var(--color-muted-foreground);
+}
+
+.data-table__row--total .data-table__cell {
+  font-weight: var(--weight-bold);
+  color: var(--color-foreground);
+  border-block-end: 0;
+}
+
+.employees-table__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}

@@ -3,7 +3,8 @@ import { useSyncExternalStore } from "react";
 /**
  * The app's routing.
  *
- * Four screens and one linear stack do not justify a routing dependency, so
+ * A handful of screens and one linear stack do not justify a routing
+ * dependency, so
  * this is the History API directly: `pushState` for a forward move, the
  * browser's own `popstate` for back. The address bar, the hardware/browser
  * back button and an in-app back control therefore all drive the same state,
@@ -15,13 +16,17 @@ export type Route =
   | { kind: "dashboard" }
   | { kind: "food-cost" }
   | { kind: "supplier"; supplierId: string }
-  | { kind: "supplier-orders"; supplierId: string };
+  | { kind: "supplier-orders"; supplierId: string }
+  | { kind: "labor-cost" }
+  | { kind: "department"; departmentId: string };
 
 export const paths = {
   dashboard: "/",
   foodCost: "/food-cost",
   supplier: (id: string) => `/suppliers/${encodeURIComponent(id)}`,
   supplierOrders: (id: string) => `/suppliers/${encodeURIComponent(id)}/orders`,
+  laborCost: "/labor-cost",
+  department: (id: string) => `/departments/${encodeURIComponent(id)}`,
 };
 
 /** Unknown paths fall back to the dashboard rather than rendering nothing. */
@@ -30,6 +35,14 @@ export function parseRoute(pathname: string): Route {
 
   if (segments[0] === "food-cost" && segments.length === 1) {
     return { kind: "food-cost" };
+  }
+
+  if (segments[0] === "labor-cost" && segments.length === 1) {
+    return { kind: "labor-cost" };
+  }
+
+  if (segments[0] === "departments" && segments[1] && segments.length === 2) {
+    return { kind: "department", departmentId: segments[1] };
   }
 
   if (segments[0] === "suppliers" && segments[1]) {
@@ -52,8 +65,10 @@ export function routeDepth(route: Route): number {
   switch (route.kind) {
     case "dashboard":
     case "food-cost":
+    case "labor-cost":
       return 0;
     case "supplier":
+    case "department":
       return 1;
     case "supplier-orders":
       return 2;

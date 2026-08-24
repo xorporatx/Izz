@@ -1,0 +1,31 @@
+/**
+ * Form field block: label above, control, error beneath.
+ *
+ * Sits in a two-column grid on the forms; `--wide` spans both columns.
+ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-foreground);
+  /* RTL: start is the right edge, which is where the frame puts labels. */
+  text-align: start;
+}
+
+.field__error {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-danger);
+  text-align: start;
+}

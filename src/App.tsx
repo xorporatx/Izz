@@ -4,8 +4,11 @@ import {
   PageTransition,
   type TransitionDirection,
 } from "./components/layout/PageTransition";
+import { AddDepartmentDrawer } from "./components/departments/AddDepartmentDrawer";
 import { Dashboard } from "./pages/Dashboard";
+import { DepartmentPage } from "./pages/DepartmentPage";
 import { FoodCostPage } from "./pages/FoodCostPage";
+import { LaborCostPage } from "./pages/LaborCostPage";
 import { SupplierOrdersPage } from "./pages/SupplierOrdersPage";
 import { SupplierShortPage } from "./pages/SupplierShortPage";
 import {
@@ -35,6 +38,8 @@ function stackKey(route: Route): string | null {
       return `supplier:${route.supplierId}`;
     case "supplier-orders":
       return `supplier-orders:${route.supplierId}`;
+    case "department":
+      return `department:${route.departmentId}`;
     default:
       return null;
   }
@@ -48,6 +53,7 @@ export default function App() {
   );
   /** Highlight for the nav entries that have no page of their own yet. */
   const [selectedNav, setSelectedNav] = useState("control");
+  const [addDepartmentOpen, setAddDepartmentOpen] = useState(false);
 
   const route = parseRoute(usePathname());
   const depth = routeDepth(route);
@@ -76,7 +82,9 @@ export default function App() {
 
   const handleNavSelect = useCallback((id: string) => {
     setSelectedNav(id);
-    navigate(id === "food-cost" ? paths.foodCost : paths.dashboard);
+    if (id === "food-cost") navigate(paths.foodCost);
+    else if (id === "labor-cost") navigate(paths.laborCost);
+    else navigate(paths.dashboard);
   }, []);
 
   const openSupplier = useCallback((supplierId: string) => {
@@ -87,10 +95,23 @@ export default function App() {
     navigate(paths.supplierOrders(supplierId));
   }, []);
 
-  // Supplier pages hang off the פודקוסט screen, so that is what stays mounted
-  // underneath them — including on a cold open from a shared link.
-  const onFoodCost = route.kind !== "dashboard";
-  const activeNav = onFoodCost ? "food-cost" : selectedNav;
+  const openDepartment = useCallback((departmentId: string) => {
+    navigate(paths.department(departmentId));
+  }, []);
+
+  // A stacked page keeps its own section mounted underneath it — supplier
+  // pages hang off פודקוסט, a department off לייבור קוסט — so the shell behind
+  // the stack is right even on a cold open from a shared link.
+  const section =
+    route.kind === "food-cost" ||
+    route.kind === "supplier" ||
+    route.kind === "supplier-orders"
+      ? "food-cost"
+      : route.kind === "labor-cost" || route.kind === "department"
+        ? "labor-cost"
+        : "dashboard";
+
+  const activeNav = section === "dashboard" ? selectedNav : section;
 
   return (
     <>
@@ -104,9 +125,18 @@ export default function App() {
         activeNav={activeNav}
         onNavSelect={handleNavSelect}
       >
-        {onFoodCost ? (
+        {section === "food-cost" && (
           <FoodCostPage onOpenSupplier={openSupplier} />
-        ) : (
+        )}
+
+        {section === "labor-cost" && (
+          <LaborCostPage
+            onOpenDepartment={openDepartment}
+            onAddDepartment={() => setAddDepartmentOpen(true)}
+          />
+        )}
+
+        {section === "dashboard" && (
           <Dashboard completedTasks={completedTasks} onToggleTask={toggleTask} />
         )}
       </DashboardShell>
@@ -126,7 +156,22 @@ export default function App() {
             onBack={() => back(paths.supplier(route.supplierId))}
           />
         )}
+
+        {route.kind === "department" && (
+          <DepartmentPage
+            departmentId={route.departmentId}
+            onBack={() => back(paths.laborCost)}
+          />
+        )}
       </PageTransition>
+
+      {/* Owned here rather than by the list, because creating a department
+          ends in a navigation. */}
+      <AddDepartmentDrawer
+        open={addDepartmentOpen}
+        onOpenChange={setAddDepartmentOpen}
+        onCreated={(department) => openDepartment(department.id)}
+      />
     </>
   );
 }

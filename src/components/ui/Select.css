@@ -1,0 +1,109 @@
+/* Trigger mirrors .input so a select and a text field line up in a row. */
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  inline-size: 100%;
+  min-block-size: 44px;
+  padding-inline: var(--space-4);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-foreground);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  transition: border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+.select:focus-visible {
+  outline: none;
+  border-color: var(--color-ring);
+  box-shadow: var(--focus-ring);
+}
+
+.select:disabled {
+  color: var(--color-muted-foreground);
+  background: var(--color-surface-sunken);
+  cursor: not-allowed;
+}
+
+.select--invalid,
+.select--invalid:focus-visible {
+  border-color: var(--color-danger);
+}
+
+.select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: start;
+}
+
+.select__value--placeholder {
+  color: var(--color-muted-foreground);
+}
+
+.select__chevron {
+  flex: none;
+  color: var(--color-muted-foreground);
+  transition: transform var(--duration) var(--ease);
+}
+
+.select[data-state="open"] .select__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── List ────────────────────────────────────────────────── */
+/* Matches the trigger's width so the list reads as the field opening. */
+.popover__content.select__list {
+  inline-size: var(--radix-popover-trigger-width);
+  max-block-size: min(280px, var(--radix-popover-content-available-height));
+  padding: var(--space-1);
+  overflow-y: auto;
+}
+
+.select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  inline-size: 100%;
+  min-block-size: 40px;
+  padding-inline: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-foreground);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration) var(--ease);
+}
+
+.select__option-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: start;
+}
+
+@media (hover: hover) {
+  .select__option:hover {
+    background: var(--color-surface-sunken);
+  }
+}
+
+.select__option:focus-visible {
+  outline: none;
+  background: var(--color-surface-sunken);
+  box-shadow: var(--focus-ring);
+}
+
+.select__option--selected {
+  color: var(--color-success-ink);
+  background: var(--color-success-surface);
+  font-weight: var(--weight-medium);
+}
+
+.select__option--selected:hover {
+  background: var(--color-success-surface);
+}

@@ -1,0 +1,118 @@
+.labor-cost {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.labor-cost__summary {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.labor-cost__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-inline-size: 0;
+}
+
+.labor-cost__title {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-foreground);
+}
+
+.labor-cost__caption {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-muted-foreground);
+}
+
+.labor-cost__add {
+  flex: none;
+}
+
+.labor-cost__departments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ── Department card ─────────────────────────────────────── */
+.department-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  inline-size: 100%;
+  padding: var(--space-4) var(--space-5);
+  text-align: start;
+}
+
+.department-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-inline-size: 0;
+}
+
+.department-card__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.department-card__icon {
+  flex: none;
+  color: var(--color-success-ink);
+}
+
+.department-card__name {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+}
+
+.department-card__meta {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+}
+
+.department-card__side {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.department-card__count {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-foreground);
+}
+
+.department-card__count-label {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+}
+
+/* RTL: forward is the left-pointing arrow, as elsewhere in the product. */
+.department-card__chevron {
+  align-self: center;
+  color: var(--color-muted-foreground);
+}
+
+@media (min-width: 768px) {
+  .labor-cost {
+    gap: var(--space-6);
+  }
+}

@@ -1,0 +1,58 @@
+.orders-preview {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-panel);
+}
+
+/* The table never forces the page sideways; it scrolls inside its own card. */
+.orders-preview__scroll {
+  inline-size: 100%;
+  overflow-x: auto;
+}
+
+.orders-preview__empty {
+  padding: var(--space-8) var(--space-5);
+  text-align: center;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-muted-foreground);
+}
+
+/* ── Table ───────────────────────────────────────────────── */
+.orders-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+}
+
+.orders-table__head {
+  block-size: 40px;
+  padding: var(--space-2) var(--space-3);
+  text-align: start;
+  font-weight: var(--weight-regular);
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.orders-table__cell {
+  block-size: 52px;
+  padding: var(--space-2) var(--space-3);
+  text-align: start;
+  font-weight: var(--weight-regular);
+  color: var(--color-foreground);
+  white-space: nowrap;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.orders-table__cell--reference {
+  color: var(--color-muted-foreground);
+}
+
+/* ── Totals ──────────────────────────────────────────────── */
+.orders-table__row--total .orders-table__cell {
+  font-weight: var(--weight-bold);
+  color: var(--color-foreground);
+  border-block-end: 0;
+}

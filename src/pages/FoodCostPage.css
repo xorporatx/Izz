@@ -1,0 +1,85 @@
+.food-cost {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.food-cost__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block-start: var(--space-4);
+  padding-inline: var(--page-gutter);
+}
+
+.food-cost__title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+}
+
+.food-cost__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.food-cost__stat {
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+.food-cost__stat-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-muted-foreground);
+}
+
+.food-cost__stat-value {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-foreground);
+}
+
+.food-cost__stat-caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+}
+
+.food-cost__suppliers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-inline: var(--page-gutter);
+}
+
+@media (min-width: 768px) {
+  .food-cost {
+    gap: var(--space-6);
+  }
+
+  .food-cost__summary,
+  .food-cost__suppliers {
+    padding-inline: 0;
+  }
+
+  .food-cost__summary {
+    padding-block-start: 0;
+    gap: var(--space-4);
+  }
+
+  .food-cost__suppliers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-4);
+    align-items: start;
+  }
+}

@@ -1,0 +1,31 @@
+.back-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  /* Comfortably over the 44px minimum touch target. */
+  inline-size: 44px;
+  block-size: 44px;
+  color: var(--color-foreground);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xs);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .back-button:hover {
+    background: var(--color-panel);
+    border-color: #d7d3c9;
+  }
+}
+
+.back-button:active {
+  background: #ece7d9;
+  box-shadow: none;
+}

@@ -1,0 +1,64 @@
+.supplier-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.supplier-skeleton__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.supplier-skeleton__line {
+  display: block;
+  block-size: 14px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    90deg,
+    var(--color-track) 0%,
+    #efece1 50%,
+    var(--color-track) 100%
+  );
+  background-size: 200% 100%;
+  animation: supplier-skeleton-shimmer 1.4s var(--ease) infinite;
+}
+
+.supplier-skeleton__line--title {
+  inline-size: 40%;
+}
+
+.supplier-skeleton__line--value {
+  inline-size: 60%;
+  block-size: 24px;
+}
+
+.supplier-skeleton__line--meter {
+  inline-size: 100%;
+  block-size: 6px;
+}
+
+.supplier-skeleton__line--row {
+  inline-size: 100%;
+  block-size: 20px;
+}
+
+@keyframes supplier-skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .supplier-skeleton__line {
+    animation: none;
+  }
+}

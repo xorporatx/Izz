@@ -1,0 +1,115 @@
+.page-transition {
+  position: fixed;
+  inset: 0;
+  /* Above the floating bottom bar (30), below the sidebar (40) and the
+     category drawer (50) — a sub-page covers the tab bar but never the app
+     chrome that sits outside the content column. */
+  z-index: 35;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--color-background);
+  --page-duration: 260ms;
+}
+
+/* The leaving page never sits over the one arriving. */
+.page-transition--leave-forward,
+.page-transition--leave-back {
+  z-index: 34;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  /* Clear the fixed sidebar, which stays visible and usable. */
+  .page-transition {
+    inset-inline-start: var(--sidebar-rail-width);
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-transition {
+    inset-inline-start: var(--sidebar-width);
+  }
+}
+
+/* ── Motion ──────────────────────────────────────────────── */
+/* Going deeper, a page travels right to left: it enters from the right edge
+   and the one it covers is pushed the rest of the way out. Coming back
+   reverses both. */
+.page-transition--enter-forward {
+  animation: page-enter-forward var(--page-duration) var(--ease) both;
+}
+
+.page-transition--leave-forward {
+  animation: page-leave-forward var(--page-duration) var(--ease) both;
+}
+
+.page-transition--enter-back {
+  animation: page-enter-back var(--page-duration) var(--ease) both;
+}
+
+.page-transition--leave-back {
+  animation: page-leave-back var(--page-duration) var(--ease) both;
+}
+
+@keyframes page-enter-forward {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes page-leave-forward {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-24%);
+    opacity: 0;
+  }
+}
+
+@keyframes page-enter-back {
+  from {
+    transform: translateX(-24%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes page-leave-back {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    --page-duration: 1ms;
+  }
+
+  /* No sliding — the page simply appears. */
+  .page-transition--enter-forward,
+  .page-transition--leave-forward,
+  .page-transition--enter-back,
+  .page-transition--leave-back {
+    animation-name: page-fade;
+  }
+
+  @keyframes page-fade {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

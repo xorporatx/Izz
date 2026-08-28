@@ -28,16 +28,10 @@
   }
 
   /* ── Brand ─────────────────────────────────────────────── */
+  /* The mark carries its own tile and colours; the rail only reserves space. */
   .sidebar__mark {
-    display: inline-flex;
     flex: none;
-    align-items: center;
-    justify-content: center;
-    inline-size: 36px;
-    block-size: 36px;
-    color: #ffffff;
-    background: var(--color-success-strong);
-    border-radius: 12px;
+    display: block;
   }
 
   /* ── Burger ────────────────────────────────────────────── */

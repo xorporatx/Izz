@@ -83,7 +83,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-inline: var(--space-5);
+  /* Same inset as .menu__nav's padding, so the button lines up with the
+     category rows below it rather than sitting narrower than them. */
+  margin-inline: var(--space-3);
   min-block-size: 44px;
   padding-inline: var(--space-4);
   color: #ffffff;

@@ -1,4 +1,5 @@
-import { BarChart2, Menu, Plus } from "../icons";
+import { Menu, Plus } from "../icons";
+import { Logo } from "../ui/Logo";
 import "./DesktopSidebar.css";
 
 export interface DesktopSidebarProps {
@@ -20,9 +21,7 @@ export interface DesktopSidebarProps {
 export function DesktopSidebar({ onOpenMenu }: DesktopSidebarProps) {
   return (
     <aside className="sidebar" aria-label="ניווט ראשי">
-      <span className="sidebar__mark" aria-label="IzzBizz">
-        <BarChart2 size={18} />
-      </span>
+      <Logo size={36} className="sidebar__mark" />
 
       <button
         type="button"

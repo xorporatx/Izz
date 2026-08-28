@@ -1,5 +1,6 @@
-import { foodCost, suppliers } from "../data/suppliers";
+import { foodCost } from "../data/suppliers";
 import { SupplierCard } from "../components/suppliers/SupplierCard";
+import { useSuppliers } from "../lib/useSuppliers";
 import { Card } from "../components/ui/Card";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import "./FoodCostPage.css";
@@ -18,6 +19,7 @@ const SUPPLIERS_ID = "food-cost-suppliers";
  * expands.
  */
 export function FoodCostPage({ onOpenSupplier }: FoodCostPageProps) {
+  const suppliers = useSuppliers();
   const stats = [foodCost.spend, foodCost.ratio];
 
   return (

@@ -1,6 +1,9 @@
 /**
  * Supplier content for the פודקוסט breakdown.
  *
+ * `seedSuppliers` is the fixture; the live list — including any supplier
+ * created through "הוסף ספק חדש" — is `useSuppliers()` in `lib/useSuppliers.ts`.
+ *
  * Figures, labels and copy come from the Figma frame 648:6345
  * ("פודקסט - ספקים") and are reproduced exactly as drawn, including where the
  * design repeats itself: both suppliers carry the same figures and the same
@@ -60,9 +63,23 @@ export interface Supplier {
   /** Every order in the period. Empty is a valid state. */
   orders: SupplierOrder[];
   totals: SupplierOrdersTotals;
+
+  /* ── Fields from "הוסף ספק חדש" (frame 740:33698) ───────────────
+     Optional because the two seeded suppliers above predate the form and
+     were never given them. */
+  /** ח.פ — Israeli business registration number. */
+  businessNumber?: string;
+  email?: string;
+  phone?: string;
+  /** The billing category chosen on the form — see `supplierCategories`. */
+  category?: string;
+  /** Assigned by the same numbering the form previews before creation. */
+  supplierNumber?: string;
+  /** Marks a supplier created in this session, so it reads as new. */
+  isNew?: boolean;
 }
 
-export const suppliers: Supplier[] = [
+export const seedSuppliers: Supplier[] = [
   {
     id: "unimarket",
     name: "יונימרקט",

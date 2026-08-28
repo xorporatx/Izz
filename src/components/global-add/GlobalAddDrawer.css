@@ -1,0 +1,295 @@
+/**
+ * The ＋ drawer's shell.
+ *
+ * Same width and right-edge positioning as the department flow's FormDrawer
+ * — the reason for the physical right/left override is identical: Drawer.css
+ * pins direction="right" with inset-inline-end, which resolves to the left
+ * edge under dir=rtl while vaul still hides the panel behind the physical
+ * right one.
+ */
+.drawer__content.global-add {
+  right: 0;
+  left: auto;
+  inline-size: min(480px, 92vw);
+  padding: 0;
+  background: var(--color-background);
+  border-left: 1px solid var(--color-border);
+  border-top-left-radius: var(--radius-card);
+  border-bottom-left-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.global-add__form {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 0;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.global-add__header {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5) var(--space-6) var(--space-4);
+}
+
+.global-add__title {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+  text-align: center;
+}
+
+/* Absolute, not in flow: the frame draws the close control opposite the
+   reading edge — left, in RTL — independent of the centred title. */
+.global-add__close {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-end: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 36px;
+  block-size: 36px;
+  color: var(--color-foreground);
+  border-radius: var(--radius-full);
+  transition: background-color var(--duration) var(--ease);
+}
+
+@media (hover: hover) {
+  .global-add__close:hover {
+    background: rgb(38 38 38 / 0.06);
+  }
+}
+
+/* ── Tabs ────────────────────────────────────────────────── */
+.global-add__tabs {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-6) var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.global-add__tab {
+  min-block-size: 36px;
+  padding-inline: var(--space-4);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-foreground);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+.global-add__tab--active {
+  color: #ffffff;
+  background: var(--color-success);
+  font-weight: var(--weight-semibold);
+}
+
+/* ── Body ────────────────────────────────────────────────── */
+.global-add__body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: var(--space-5) var(--space-6);
+  overflow-y: auto;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.global-add__footer {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6)
+    calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+  background: var(--color-background);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.global-add__footer .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.global-add__error {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-danger);
+  text-align: start;
+}
+
+/* ── Shared by every tab form ───────────────────────────────
+   Two-up field rows, as the frame draws them; a narrow phone cannot carry
+   two 44px controls side by side. */
+.global-add__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.global-add__grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 480px) {
+  .global-add__grid,
+  .global-add__grid--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* The two receipt buttons at the top of every tab. */
+.global-add__receipt-row {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.global-add__receipt-row .btn {
+  flex: 1 1 0;
+}
+
+.global-add__file-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 36px;
+  padding-inline: var(--space-3);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-foreground);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-md);
+}
+
+.global-add__file-chip--spaced {
+  margin-block-start: var(--space-3);
+}
+
+.global-add__file-chip-name {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.global-add__file-chip-remove {
+  flex: none;
+  display: inline-flex;
+  color: var(--color-muted-foreground);
+}
+
+/* Collapsible sub-section — הכנסות חיצוניות. */
+.global-add__collapse-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: 32px;
+}
+
+.global-add__collapse-label {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-ring);
+}
+
+.global-add__collapse-chevron {
+  color: var(--color-ring);
+  transition: transform var(--duration) var(--ease);
+}
+
+.global-add__collapse-chevron--open {
+  transform: rotate(180deg);
+}
+
+.global-add__collapse-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* לייבור: single/multiple toggle, matching the frame's segmented control. */
+.global-add__segmented {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.global-add__segment {
+  flex: 1 1 0;
+  min-block-size: 28px;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  color: var(--color-muted-foreground);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.global-add__segment--active {
+  color: var(--color-foreground);
+  font-weight: var(--weight-medium);
+  background: var(--color-card);
+  box-shadow: var(--shadow-sm);
+}
+
+/* לייבור: the computed cost readout. */
+.global-add__totals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-panel);
+  border-radius: var(--radius-md);
+}
+
+.global-add__totals-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+}
+
+.global-add__totals-label {
+  color: var(--color-muted-foreground);
+  font-weight: var(--weight-bold);
+}
+
+.global-add__totals-value {
+  font-weight: var(--weight-semibold);
+  color: var(--color-foreground);
+}
+
+.global-add__totals-employer {
+  color: var(--color-muted-foreground);
+  font-weight: var(--weight-bold);
+}
+
+.global-add__totals-employer-value {
+  color: var(--color-success-ink);
+  font-weight: var(--weight-bold);
+}
+
+.global-add__note {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--color-muted-foreground);
+  padding: var(--space-4);
+  text-align: center;
+  background: var(--color-panel);
+  border-radius: var(--radius-md);
+}

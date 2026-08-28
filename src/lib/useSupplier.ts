@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { suppliers, type Supplier } from "../data/suppliers";
+import type { Supplier } from "../data/suppliers";
+import { getSuppliers } from "./useSuppliers";
 
 /**
  * Supplier lookup for the detail pages.
  *
- * The data is local, but the detail page is reached by URL and will eventually
- * be served by an API, so the read is modelled as asynchronous from the start:
+ * The data comes from the live `useSuppliers` store — so a supplier created
+ * through the global Add flow resolves here too — but the detail page is
+ * reached by URL and will eventually be served by an API, so the read is
+ * modelled as asynchronous from the start:
  * the page renders a skeleton on a cold open and the resolved supplier is
  * cached, so returning to one it has already seen is instant rather than
  * flashing the skeleton a second time.
@@ -19,7 +22,7 @@ const cache = new Map<string, Supplier | null>();
 function loadSupplier(id: string): Promise<void> {
   return new Promise((resolve) => {
     window.setTimeout(() => {
-      cache.set(id, suppliers.find((entry) => entry.id === id) ?? null);
+      cache.set(id, getSuppliers().find((entry) => entry.id === id) ?? null);
       resolve();
     }, LATENCY_MS);
   });

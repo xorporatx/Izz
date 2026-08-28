@@ -157,3 +157,36 @@ export async function createEmployee(input: NewEmployee): Promise<Employee> {
 export function nextEmployeeNumber(): string {
   return String(employeeSequence + 1);
 }
+
+/**
+ * Adds one day's hours and cost to an employee's running totals.
+ *
+ * Written for the לייבור tab of the global Add flow: submitting it there
+ * should visibly change something on the employee's existing department
+ * page, the same way an added department or employee already does, rather
+ * than only appending to a log nothing reads. The seeded employees already
+ * carry non-zero `hours`/`employeeCost`/`employerCost` as period-to-date
+ * accumulations, so adding to them — not replacing them — is what keeps a
+ * newly recorded day consistent with how those figures already behave.
+ */
+export async function recordLaborEntry(
+  employeeId: string,
+  delta: { hours: number; employeeCost: number; employerCost: number },
+): Promise<Employee | null> {
+  await wait(LATENCY_MS);
+
+  let updated: Employee | null = null;
+  employees = employees.map((employee) => {
+    if (employee.id !== employeeId) return employee;
+    updated = {
+      ...employee,
+      hours: employee.hours + delta.hours,
+      employeeCost: employee.employeeCost + delta.employeeCost,
+      employerCost: employee.employerCost + delta.employerCost,
+    };
+    return updated;
+  });
+
+  if (updated) emit();
+  return updated;
+}

@@ -5,6 +5,8 @@ import "./DesktopSidebar.css";
 export interface DesktopSidebarProps {
   /** Opens the full category menu. */
   onOpenMenu: () => void;
+  /** Opens the global add flow — "הזנת נתונים יומית". */
+  onOpenAdd: () => void;
 }
 
 /**
@@ -18,7 +20,7 @@ export interface DesktopSidebarProps {
  * Below 768px it is not rendered at all — the mobile bottom bar and header
  * take over.
  */
-export function DesktopSidebar({ onOpenMenu }: DesktopSidebarProps) {
+export function DesktopSidebar({ onOpenMenu, onOpenAdd }: DesktopSidebarProps) {
   return (
     <aside className="sidebar" aria-label="ניווט ראשי">
       <Logo size={36} className="sidebar__mark" />
@@ -41,6 +43,8 @@ export function DesktopSidebar({ onOpenMenu }: DesktopSidebarProps) {
         className="sidebar__action"
         title="פעולה חדשה"
         aria-label="פעולה חדשה"
+        aria-haspopup="dialog"
+        onClick={onOpenAdd}
       >
         <Plus size={18} />
       </button>

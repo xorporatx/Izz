@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import type { PeriodId } from "../../data/dashboard";
 import { DashboardHeader } from "./DashboardHeader";
 import { DesktopSidebar } from "./DesktopSidebar";
+import { GlobalAdd } from "../global-add/GlobalAdd";
 import { MainMenuDrawer } from "./MainMenuDrawer";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileTopBar } from "./MobileTopBar";
@@ -38,10 +39,14 @@ export function DashboardShell({
   children,
 }: DashboardShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
 
   return (
     <div className="shell">
-      <DesktopSidebar onOpenMenu={() => setMenuOpen(true)} />
+      <DesktopSidebar
+        onOpenMenu={() => setMenuOpen(true)}
+        onOpenAdd={() => setAddOpen(true)}
+      />
 
       <div className="shell__main">
         <MobileTopBar
@@ -65,7 +70,11 @@ export function DashboardShell({
         <main className="shell__content">{children}</main>
       </div>
 
-      <MobileBottomNav active={activeNav} onSelect={onNavSelect} />
+      <MobileBottomNav
+        active={activeNav}
+        onSelect={onNavSelect}
+        onOpenAdd={() => setAddOpen(true)}
+      />
 
       <MainMenuDrawer
         open={menuOpen}
@@ -74,6 +83,8 @@ export function DashboardShell({
         active={activeNav}
         onSelect={onNavSelect}
       />
+
+      <GlobalAdd open={addOpen} onOpenChange={setAddOpen} />
     </div>
   );
 }

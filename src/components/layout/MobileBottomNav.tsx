@@ -5,6 +5,8 @@ import "./MobileBottomNav.css";
 export interface MobileBottomNavProps {
   active: string;
   onSelect: (id: string) => void;
+  /** Opens the global add flow — "הזנת נתונים יומית". */
+  onOpenAdd: () => void;
 }
 
 /**
@@ -12,7 +14,7 @@ export interface MobileBottomNavProps {
  * circular ＋ action; RTL flow puts בקרה at the far right and משימות at the
  * far left, exactly as drawn.
  */
-export function MobileBottomNav({ active, onSelect }: MobileBottomNavProps) {
+export function MobileBottomNav({ active, onSelect, onOpenAdd }: MobileBottomNavProps) {
   const [leading, trailing] = [navItems.slice(0, 2), navItems.slice(2)];
 
   const renderItem = ({ id, label, Icon }: (typeof navItems)[number]) => (
@@ -34,7 +36,13 @@ export function MobileBottomNav({ active, onSelect }: MobileBottomNavProps) {
     <nav className="mobile-nav" aria-label="ניווט ראשי">
       <div className="mobile-nav__group">{leading.map(renderItem)}</div>
 
-      <button type="button" className="mobile-nav__action" aria-label="פעולה חדשה">
+      <button
+        type="button"
+        className="mobile-nav__action"
+        aria-label="פעולה חדשה"
+        aria-haspopup="dialog"
+        onClick={onOpenAdd}
+      >
         <Plus size={16} />
       </button>
 

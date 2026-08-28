@@ -41,12 +41,7 @@ export function DashboardShell({
 
   return (
     <div className="shell">
-      <DesktopSidebar
-        venue={venue}
-        active={activeNav}
-        onSelect={onNavSelect}
-        onOpenMenu={() => setMenuOpen(true)}
-      />
+      <DesktopSidebar onOpenMenu={() => setMenuOpen(true)} />
 
       <div className="shell__main">
         <MobileTopBar

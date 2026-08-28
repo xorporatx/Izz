@@ -53,7 +53,24 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--space-6);
-    align-items: start;
+    /* Stretch, not start: the two tracks then share one row height, and since
+       both are the same structure — section header over a carousel — the
+       insight card and the task card come out the same height as each other
+       rather than each hugging its own copy. */
+    align-items: stretch;
+  }
+
+  /* Pass the row height down: section → carousel → track → card. The cards
+     already carry block-size: 100%, so the chain is what was missing. */
+  .dashboard__primary > .insights,
+  .dashboard__secondary > .tasks {
+    block-size: 100%;
+  }
+
+  .dashboard__grid .carousel,
+  .dashboard__grid .carousel__track {
+    flex: 1 1 auto;
+    min-block-size: 0;
   }
 
   .dashboard__summary {

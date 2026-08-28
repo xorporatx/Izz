@@ -211,8 +211,19 @@ export const suppliers: Supplier[] = [
 /** Period totals shown above the supplier list, from the same Figma frame. */
 export const foodCost = {
   title: "פודקוסט — מבטח כללי",
-  spend: { label: "סה״כ הוצאה", value: "₪2,633", caption: "מ-₪303,865 מכירות" },
-  ratio: { label: "פוד קוסט כולל", value: "0.9%", caption: "תקין" },
+  /**
+   * The shekel sign trails the digits, as the frame draws it. Order here is
+   * what decides it: "₪2,633" and "2,633₪" are both one left-to-right bidi
+   * run, so the element's `direction` cannot flip them — only the string can.
+   */
+  spend: { label: "סה״כ הוצאה", value: "2,633₪", caption: "מ-303,865₪ מכירות" },
+  /** `tone: "good"` turns the figure and its caption green, as in the frame. */
+  ratio: {
+    label: "פוד קוסט כולל",
+    value: "0.9%",
+    caption: "תקין",
+    tone: "good",
+  },
 } as const;
 
 /**

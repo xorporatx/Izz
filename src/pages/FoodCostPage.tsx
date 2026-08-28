@@ -1,6 +1,5 @@
 import { foodCost, suppliers } from "../data/suppliers";
 import { SupplierCard } from "../components/suppliers/SupplierCard";
-import { DollarSign } from "../components/icons";
 import { Card } from "../components/ui/Card";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import "./FoodCostPage.css";
@@ -29,12 +28,25 @@ export function FoodCostPage({ onOpenSupplier }: FoodCostPageProps) {
         <div className="food-cost__stats">
           {stats.map((stat) => (
             <Card className="food-cost__stat" key={stat.label}>
-              <p className="food-cost__stat-label">
-                <DollarSign size={16} />
-                <span>{stat.label}</span>
+              <p className="food-cost__stat-label">{stat.label}</p>
+              <p
+                className={`food-cost__stat-value numeric${
+                  "tone" in stat && stat.tone === "good"
+                    ? " food-cost__stat-value--good"
+                    : ""
+                }`}
+              >
+                {stat.value}
               </p>
-              <p className="food-cost__stat-value numeric">{stat.value}</p>
-              <p className="food-cost__stat-caption">{stat.caption}</p>
+              <p
+                className={`food-cost__stat-caption${
+                  "tone" in stat && stat.tone === "good"
+                    ? " food-cost__stat-caption--good"
+                    : ""
+                }`}
+              >
+                {stat.caption}
+              </p>
             </Card>
           ))}
         </div>

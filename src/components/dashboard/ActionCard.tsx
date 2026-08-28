@@ -1,5 +1,5 @@
 import type { Insight } from "../../data/dashboard";
-import { ArrowLeft, Circle, Sparkles } from "../icons";
+import { ArrowLeft, Sparkles } from "../icons";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -26,7 +26,7 @@ export function ActionCard({ insight, featured = false }: ActionCardProps) {
         <Badge tone="success" icon={<Sparkles size={12} />}>
           {insight.category}
         </Badge>
-        <Badge tone={insight.priority.tone} icon={<Circle size={12} />}>
+        <Badge tone={insight.priority.tone}>
           {insight.priority.label}
         </Badge>
       </header>

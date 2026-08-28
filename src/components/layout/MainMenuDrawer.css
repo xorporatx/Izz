@@ -88,7 +88,8 @@
   padding-inline: var(--space-4);
   color: #ffffff;
   background: var(--color-accent-blue);
-  border-radius: var(--radius-full);
+  /* 14px, not a pill — --radius-xl is the token that already means 14. */
+  border-radius: var(--radius-xl);
   transition: background-color var(--duration) var(--ease);
 }
 

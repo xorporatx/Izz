@@ -1,3 +1,9 @@
+/**
+ * The rail.
+ *
+ * One width at every size — it holds icons only, so there is nothing for an
+ * expanded state to reveal. The category list lives in the menu drawer.
+ */
 .sidebar {
   display: none;
 }
@@ -7,12 +13,13 @@
     position: fixed;
     inset-block: 0;
     /* RTL: the inline start edge is the right-hand one, which is where
-       reading begins and where the sidebar belongs. */
+       reading begins and where the rail belongs. */
     inset-inline-start: 0;
     z-index: 40;
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    align-items: center;
+    gap: var(--space-4);
     inline-size: var(--sidebar-rail-width);
     padding: var(--space-6) var(--space-4);
     background: var(--color-card);
@@ -21,74 +28,26 @@
   }
 
   /* ── Brand ─────────────────────────────────────────────── */
-  /* The rail has no room for a wordmark and no longer carries a mark, so the
-     brand row simply does not exist below 1200px. */
-  .sidebar__brand {
-    display: none;
+  .sidebar__mark {
+    display: inline-flex;
+    flex: none;
     align-items: center;
-    gap: var(--space-3);
-    min-block-size: 40px;
-  }
-
-  .sidebar__wordmark {
-    display: none;
-    flex-direction: column;
-    min-inline-size: 0;
-  }
-
-  .sidebar__name {
-    font-size: var(--text-sm);
-    line-height: var(--leading-sm);
-    font-weight: var(--weight-semibold);
-    color: var(--color-foreground);
-  }
-
-  .sidebar__venue {
-    font-size: var(--text-xs);
-    line-height: var(--leading-xs);
-    color: var(--color-muted-foreground);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    justify-content: center;
+    inline-size: 36px;
+    block-size: 36px;
+    color: #ffffff;
+    background: var(--color-success-strong);
+    border-radius: 12px;
   }
 
   /* ── Burger ────────────────────────────────────────────── */
-  /* Opens the superset of the list below, so it is separated from the four
-     primary destinations by a rule rather than sitting among them. */
-  .sidebar__burger {
-    flex: none;
-    padding-block-end: var(--space-4);
-    border-block-end: 1px solid var(--color-border);
-    border-radius: 0;
-  }
-
-  @media (hover: hover) {
-    .sidebar__burger:hover {
-      color: var(--color-foreground);
-      background: transparent;
-    }
-  }
-
-  /* ── Items ─────────────────────────────────────────────── */
-  .sidebar__nav {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    gap: var(--space-1);
-    /* The full category list can outgrow a short viewport; it scrolls inside
-       the rail so the ＋ action stays reachable. */
-    min-block-size: 0;
-    overflow-y: auto;
-  }
-
   .sidebar__item {
     display: flex;
+    flex: none;
     align-items: center;
     justify-content: center;
-    gap: var(--space-3);
-    inline-size: 100%;
-    min-block-size: 44px;
-    padding-inline: var(--space-3);
+    inline-size: 44px;
+    block-size: 44px;
     color: var(--color-muted-foreground);
     border-radius: var(--radius-xl);
     transition: background-color var(--duration) var(--ease),
@@ -99,27 +58,6 @@
     flex: none;
   }
 
-  .sidebar__label {
-    display: none;
-    flex: 1 1 auto;
-    font-size: var(--text-sm);
-    line-height: var(--leading-sm);
-    font-weight: var(--weight-medium);
-    text-align: start;
-  }
-
-  .sidebar__badge {
-    display: none;
-    flex: none;
-    padding: var(--space-1) var(--space-3);
-    font-size: var(--text-xs);
-    line-height: var(--leading-xs);
-    font-weight: var(--weight-semibold);
-    color: #ffffff;
-    background: var(--color-foreground);
-    border-radius: var(--radius-full);
-  }
-
   @media (hover: hover) {
     .sidebar__item:hover {
       color: var(--color-foreground);
@@ -127,24 +65,19 @@
     }
   }
 
-  .sidebar__item--active,
-  .sidebar__item--active:hover {
-    color: var(--color-success-ink);
-    background: var(--color-success-surface);
-  }
-
-  .sidebar__item--active .sidebar__label {
-    font-weight: var(--weight-semibold);
+  /* Pushes the action to the bottom of the rail. */
+  .sidebar__spacer {
+    flex: 1 1 auto;
   }
 
   /* ── Action ────────────────────────────────────────────── */
   .sidebar__action {
     display: flex;
+    flex: none;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    min-block-size: 44px;
-    padding-inline: var(--space-3);
+    inline-size: 44px;
+    block-size: 44px;
     color: #ffffff;
     background: var(--color-success-strong);
     border-radius: var(--radius-full);
@@ -152,42 +85,9 @@
     transition: background-color var(--duration) var(--ease);
   }
 
-  .sidebar__action .sidebar__label {
-    flex: none;
-    font-weight: var(--weight-semibold);
-  }
-
   @media (hover: hover) {
     .sidebar__action:hover {
       background: #05412f;
     }
-  }
-}
-
-/* ── Full sidebar ────────────────────────────────────────── */
-@media (min-width: 1200px) {
-  .sidebar {
-    inline-size: var(--sidebar-width);
-    padding: var(--space-6) var(--space-5);
-    gap: var(--space-8);
-  }
-
-  .sidebar__brand,
-  .sidebar__wordmark,
-  .sidebar__label {
-    display: flex;
-  }
-
-  .sidebar__badge {
-    display: inline-block;
-  }
-
-  .sidebar__item,
-  .sidebar__action {
-    justify-content: flex-start;
-  }
-
-  .sidebar__nav {
-    gap: var(--space-2);
   }
 }

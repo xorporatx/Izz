@@ -31,9 +31,6 @@
 }
 
 .food-cost__stat-label {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
   font-size: var(--text-xs);
   line-height: var(--leading-xs);
   font-weight: var(--weight-bold);
@@ -52,6 +49,13 @@
   font-size: var(--text-xs);
   line-height: var(--leading-xs);
   color: var(--color-muted-foreground);
+}
+
+/* A healthy ratio reads green — figure and status together, as the frame
+   draws it. Semantic, so it is the tone that decides, never the call site. */
+.food-cost__stat-value--good,
+.food-cost__stat-caption--good {
+  color: var(--color-success);
 }
 
 .food-cost__suppliers {

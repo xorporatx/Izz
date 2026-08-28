@@ -89,6 +89,12 @@ svg {
   direction: ltr;
   unicode-bidi: isolate;
   font-variant-numeric: tabular-nums;
+  /* The class exists to isolate the digits' internal order, not to move the
+     text. `direction: ltr` also flips logical `start` to the left, so without
+     this every numeric block — stat figures, table columns — drifts to the
+     opposite edge from the Hebrew label above it. The document is RTL, so the
+     resting edge is the right one. */
+  text-align: right;
 }
 
 /* Horizontal scrollers hide their scrollbar on touch surfaces. */

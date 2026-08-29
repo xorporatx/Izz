@@ -19,15 +19,11 @@
 }
 
 @media (min-width: 768px) {
-  /* Clear the fixed sidebar, which stays visible and usable. */
+  /* Clear the fixed sidebar, which stays visible and usable. The rail is
+     `--sidebar-rail-width` at every desktop size — it never expands — so
+     this inset does not need a wider-breakpoint override. */
   .page-transition {
     inset-inline-start: var(--sidebar-rail-width);
-  }
-}
-
-@media (min-width: 1200px) {
-  .page-transition {
-    inset-inline-start: var(--sidebar-width);
   }
 }
 

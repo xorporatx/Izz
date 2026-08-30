@@ -25,3 +25,6 @@ dist-ssr
 
 # Claude Code session state
 .claude/scheduled_tasks.lock
+
+*storybook.log
+storybook-static
